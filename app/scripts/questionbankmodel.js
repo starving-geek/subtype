@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * May 6, 2016
+ * May 9, 2016
  * questionbankmodel.js
  */
 
@@ -71,9 +71,9 @@ QuestionBankModel.prototype.masteryAchieved = function() {
 
 
 QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
-    if (studentAnswer == "") {
-        return false;
-    } else if (studentAnswer === "true" || studentAnswer === "false") {
+
+     if (studentAnswer === "true" || studentAnswer === "false") {
+
         if (studentAnswer === "true") {
             var studentAnswerBool = (studentAnswer === 'true');
         } else {
@@ -87,15 +87,9 @@ QuestionBankModel.prototype.checkAnswer = function(studentAnswer) {
         }
 
     } else {
-        for (var i = 0; i < this.answers.length; i++) {
-            if (this.answers[i] == studentAnswer) {
-                return true;
-            }
-        }
+
+        return false;
     }
-
-
-    return false;
 }
 
 /*
