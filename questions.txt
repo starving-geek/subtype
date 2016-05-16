@@ -1,0 +1,62 @@
+Subtyping Questions
+Will this code run? True or false?
+Is this a subtype of {x:real, y:real}? True or false?
+
+Type bank
+{x:real, y:real, color:string} (subtype)
+{y:real, x:real} (subtype)
+{x:real}
+{x:string, y:string, color:string}
+
+Statement Bank
+val c:{x:real, y:real} = {x=3.0, y=4.0}
+val c:{color:string} = {color = "brown"} (works with makeGreen function)
+val c:{x:real, y:real, color:string} = {x=3.0, y=4.0, color="brown"} (works with makeGreen function)
+val _ = c.f (runtime error)
+val _ = c.x
+val _ = c.y
+
+Function bank
+fun makeGreen (p:{color:string}) = p.color = "green"
+fun setX (p:{x:real}) = x = 4.0
+fun setY (p:{y:real}) = y = 4.0
+
+
+False statements
+
+Too few items
+{x:int, y:int} is a subtype of {x:int, y:int, z:int}
+{x:int, z:int} is a subtype of {x:int, y:int, z:int}
+{x:string, y:int} is a subtype of {x:string, y:int, z:bool}
+{z:bool, y:int} is a subtype of {x:string, y:int, z:bool}
+
+Types don't line up
+{x:int, y:int, z:int} is a subtype of {x:real, y:real, z:real}
+{x:int, y:int, z:bool} is a subtype of {x:int, y:int, z:real}
+{x:int, y:int} is a subtype of {x:string, y:string}
+{x:real, y:real} is a subtype of {x:int, y:int}
+
+---
+True statements
+
+Order doesn't matter
+{y:int, x:int} is a subtype of {x:int, y:int}
+{x:int, z:bool, y:int} is a subtype of {y:int, z:bool, x:int}
+{x:real, y:string, z:bool} is a subtype of {z:bool, y:string, x:real}
+{x:real, y:real} is a subtype of {y:real, x:real}
+
+A type is a subtype of itself
+{x:int, y:int} is a subtype of {x:int, y:int}
+{x:real, y:real, z:bool} is a subtype of {x:real, y:real, z:bool}
+{x:string, y:string} is a subtype of {y:string, x:string}
+{x:int, y:int, z:int} is a subtype of {z:int, y:int, x:int}
+
+A subtype can have more items than its supertype
+{x:int, y:int, z:bool} is a subtype of {x:int, y:int}
+{x:real, y:real, z:bool, c:string} is a subtype of {x:real, y:real, z:bool, c:string}
+{x:string, y:string, z:real} is a subtype of {y:string, z:real, x:string}
+{x:int, y:int, z:int, c:bool} is a subtype of {z:int, y:int, c:bool, x:int}
+
+
+
+
