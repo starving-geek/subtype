@@ -24,12 +24,17 @@ function getFunction() {
     var randIndex = getRandomInt(0, 3) // random number between 0 and 2
     var functions = [
         'fun makeGreen (p:{color:string}) = p.color = "green"',
-        'val distToOrigin:{x:real, y:real} = ', // complete def
+        'val distToOrigin:(p{x:real, y:real}) = Math.sqrt(p.x * p.x + p.y * p.y)', // complete def
         'fun setX (p:{x:real}) = x = 4.0',
         'fun setY (p:{y:real}) = y = 4.0'
     ];
     return functions[randIndex];
 }
+
+/*
+ * Only called when the question is will this code run?
+ * Depending on the function and/or variable t
+*/
 
 function getStatment() {
     var randIndex = getRandomInt(0, 3) // random number between 0 and 3
@@ -40,6 +45,8 @@ function getStatment() {
         'val _ = c.y',
         'val _ = c.f' // runtime error
     ];
+
+
     return statements[randIndex];
 }
 
@@ -67,6 +74,11 @@ function getType() {
     return types[randIndex];
 }
 
+/*
+ * Create the subtype expression based on the question type and the statements involved
+ * If there is a function definition you must include the call to that function
+*/
+
 function getSubtypeExpression(questionType) {
     var subtypeString = "";
 
@@ -83,21 +95,20 @@ function getSubtypeExpression(questionType) {
 }
 
 function getAnswer(questionType) {
-
+    var boolValue; // a boolean variable (true or false)
 }
 /*
  * Generates the code snippet which will bw displayed on the web page
  * Also returns the answer to the question based on the question type
 */
 SubtypeModel.prototype.evalSubtypeExpression = function() {
-    this.subtypeExpression = "<pre>" + "\n";
     var questionType = getQuestionType();
-    this.subtypeExpression += "</pre>"
+    this.subtypeExpression = "<pre>" + getSubtypeExpression(questionType) + "\n" + "</pre>";
 
     if (questionType === "subtype") {
-        this.subtypeExpression += "<label id=\"subtypeQuestion\"> Is that a subtype of {x:real, y:real}? True or false?</label>";
+        this.subtypeExpression += "<label id=\"subtypeQuestion\"> Is that a subtype of {x:real, y:real}?</label>";
     } else {
-        this.subtypeExpression += "<label id=\"subtypeQuestion\"> Will this code run? True or false?</label>";
+        this.subtypeExpression += "<label id=\"subtypeQuestion\"> Will this code run?</label>";
     }
 
 }

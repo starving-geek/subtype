@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * May 9, 2016
+ * May 18, 2016
  * questionbankmodel.js
  */
 
@@ -99,11 +99,11 @@ QuestionBankModel.prototype.createNewQuestions = function() {
     // Each question template is an array holding either strings
     // or executable commands stored as strings.
     this.questions = [
-        [""],
-        [""],
-        [""],
-        [""],
-        [""]
+        ["True or false?"],
+        ["True or false?"],
+        ["True or false?"],
+        ["True or false?"],
+        ["True or false?"]
     ];
     // the question index is used to rotate through the questions
     this.questionIndex = 0;
