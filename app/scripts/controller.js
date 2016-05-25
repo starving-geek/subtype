@@ -1,6 +1,6 @@
  /* Rich Simpson
   * Tyler Deans
-  * May 6, 2016
+  * May 25, 2016
   * controller.js
   */
 
@@ -55,11 +55,11 @@
 
 
  SimController.prototype.setupDisplay = function() {
-   this.simModel.foldExpression.evalFoldExpression();
+   this.simModel.subtypeExpression.evalSubtypeExpression();
    // choose a question randomly
    var question = this.simModel.questionBank.chooseQuestion(this.getModelValue('firstQuestion'), this.getModelValue('lastQuestion'));
    // store the answer(s) to the question we chose in the last step
-   this.simModel.questionBank.setAnswers(this.simModel.foldExpression);
+   this.simModel.questionBank.setAnswers(this.simModel.subtypeExpression);
    // draw the results for the last five questions
    this.simView.questionBankView.drawAnswerHistory(this.simModel.questionBank.answerHistory);
    // draw the expressions on the screen

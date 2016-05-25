@@ -1,6 +1,6 @@
 /*
  * Tyler Deans
- * May 18, 2016
+ * May 25, 2016
  */
 
 
@@ -10,6 +10,7 @@ function SubtypeModel(_simModel) {
     this.simModel = _simModel;
 }
 
+// randomly generates the type of question to ask
 function getQuestionType() {
     var randNum = getRandomInt(1, 3); // random number between 1 and 2
 
@@ -20,6 +21,12 @@ function getQuestionType() {
     }
 }
 
+/*
+ * One of the questions ask the student if the code will run. In the code snippet
+ * there can be a function definition
+ * There are different functions that can be called depending on the subtype.
+ *
+*/
 function getFunction() {
     var randIndex = getRandomInt(0, 3) // random number between 0 and 2
     var functions = [
@@ -33,9 +40,9 @@ function getFunction() {
 
 /*
  * Only called when the question is will this code run?
- * Depending on the function and/or variable t
+ * Depending on the if the there is a function used or is there only a
+ * variable a particular statment is returned.
 */
-
 function getStatment() {
     var randIndex = getRandomInt(0, 3) // random number between 0 and 3
     var statements = [
@@ -50,6 +57,10 @@ function getStatment() {
     return statements[randIndex];
 }
 
+/*
+ * For will this code run question.
+ * The string carrying the variable definition
+*/
 function getVariable() {
     var randIndex = getRandomInt(0, 3);
     var variables = [
@@ -60,6 +71,7 @@ function getVariable() {
 
     return variables[randIndex];
 }
+// For the type question, this method randomly generates a type which could be a subtype of {x:real, y:real}.
 function getType() {
     var randIndex = getRandomInt(0, 6);
     var types = [
@@ -76,7 +88,7 @@ function getType() {
 
 /*
  * Create the subtype expression based on the question type and the statements involved
- * If there is a function definition you must include the call to that function
+ * If there is a function definition you must include the call to that function.
 */
 
 function getSubtypeExpression(questionType) {
@@ -94,21 +106,25 @@ function getSubtypeExpression(questionType) {
     return subtypeString;
 }
 
+// Calculates the answer based on the question type
 function getAnswer(questionType) {
     var boolValue; // a boolean variable (true or false)
 }
+
 /*
  * Generates the code snippet which will bw displayed on the web page
  * Also returns the answer to the question based on the question type
 */
 SubtypeModel.prototype.evalSubtypeExpression = function() {
     var questionType = getQuestionType();
-    this.subtypeExpression = "<pre>" + getSubtypeExpression(questionType) + "\n" + "</pre>";
+    //this.subtypeExpression = "<pre>" + getSubtypeExpression(questionType) + "\n" + "</pre>";
 
     if (questionType === "subtype") {
         this.subtypeExpression += "<label id=\"subtypeQuestion\"> Is that a subtype of {x:real, y:real}?</label>";
+        //return getAnswer(questionType);
     } else {
         this.subtypeExpression += "<label id=\"subtypeQuestion\"> Will this code run?</label>";
+        //return getAnswer(questionType);
     }
 
 }

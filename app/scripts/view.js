@@ -2,7 +2,7 @@
  * main.js
  * Rich Simpson
  * Tyler Deans
- * May 6, 2016
+ * May 25, 2016
  * This code implements a mastery-based exercise on graph
  * theory for integration with Smart Sparrow.
  *
@@ -24,7 +24,7 @@ function SimView(_controller) {
     // displayed
     this.questionBankView = new QuestionBankView(this);
     // creates the fold view
-    this.foldView = new FoldView(this);
+    this.subtypeView = new SubtypeView(this);
 }
 
 
